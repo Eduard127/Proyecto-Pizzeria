@@ -4,8 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.Icon;
@@ -14,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -102,8 +105,10 @@ class PanelPrincipal extends JPanel{
 		confirmar.setBounds(120,360,120,25);
 		add(confirmar);
 		
-		llenarCombosPizzas("C:/Users/Jorge/Desktop/lecturas_archivos_java/PizzasRaspados/pizzas.txt");
+		llenarCombosPizzas("C:/Users/Jorge/Desktop/lecturas_archivos_java/PizzasRaspados/pizzas.txt");//CAMBIAR A UNA RUTA MAS BASICA C:/Users/Pizerria_archivos/pizzas.txt
 		llenarCombosHelados("C:/Users/Jorge/Desktop/lecturas_archivos_java/PizzasRaspados/helados.txt");
+		
+		//NOTA---CREAR LAS CARPETAS DESDE EL PROGRAMA
 	}
 	
 	//************************************METODO QUE SE ENCARGA DE LLENAR LOS COMBOBOX************************
@@ -122,7 +127,31 @@ class PanelPrincipal extends JPanel{
 			
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
+	//*************************************SI NO ENCUENTRA EL ARCHIVO EL PROGRAMA LO CREA*******************************
+			int decicion = JOptionPane.showConfirmDialog(null, "Desea crear el archivo?","Archivo no encontrado",JOptionPane.OK_CANCEL_OPTION);
+			
+			if(decicion == 0) {
+				
+				String texto = "Llenar los campos";
+				
+				try {
+					
+					FileWriter archivo = new FileWriter("C:/Users/Jorge/Desktop/lecturas_archivos_java/PizzasRaspados/pizzas.txt");
+					
+					BufferedWriter mi_buffer = new BufferedWriter(archivo); //creamos la memoria interna y le pasamos el archivo
+										
+					archivo.write(texto);
+					
+					archivo.close();
+					mi_buffer.close();
+					
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				
+			}
 			e.printStackTrace();
 		}		
 	}
@@ -143,7 +172,30 @@ class PanelPrincipal extends JPanel{
 			
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
+			//****************************SI NO ENCUENTRA EL ARCHIVO helados EL PROGRAMA LO CREA********************
+			int decicion = JOptionPane.showConfirmDialog(null, "Desea crear el archivo?","Archivo no encontrado",JOptionPane.OK_CANCEL_OPTION);
+			
+			if(decicion == 0) {
+				
+				String texto = "Llenar los campos";
+				
+				try {
+					
+					FileWriter archivo = new FileWriter("C:/Users/Jorge/Desktop/lecturas_archivos_java/PizzasRaspados/pizzas.txt");
+					
+					BufferedWriter mi_buffer = new BufferedWriter(archivo); //creamos la memoria interna y le pasamos el archivo
+										
+					archivo.write(texto);
+					
+					archivo.close();
+					mi_buffer.close();
+					
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+			}
 			e.printStackTrace();
 		}		
 	}
