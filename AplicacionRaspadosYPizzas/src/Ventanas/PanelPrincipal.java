@@ -30,44 +30,47 @@ public class PanelPrincipal extends JPanel{
 		
 		cmb_pizzas.addItem("Escoge Producto");
 		
-		cmb_pizzas.addActionListener(new Listeners(this));
+		//cmb_pizzas.addActionListener(new Listeners(this));
 		add(cmb_pizzas);
 		
 		suma_pizza = new JButton("+");
 		suma_pizza.setBounds(255,25,41,25);
+		suma_pizza.addActionListener(new Listeners(this));
 		add(suma_pizza);
 		
 		resta_pizza = new JButton("-");
 		resta_pizza.setBounds(300,25,41,25);
+		resta_pizza.addActionListener(new Listeners(this));
 		add(resta_pizza);
 		
 		//**************************************************************************************//
 		
 		cmb_helados = new JComboBox();
-		cmb_helados.setBounds(30,90,180,25);
-		
+		cmb_helados.setBounds(30,90,180,25);		
 		cmb_helados.addItem("Escoge Producto");
-		
-		cmb_helados.addActionListener(new Listeners(this));
 		add(cmb_helados);
 		
 		suma_helados = new JButton("+");
 		suma_helados.setBounds(255,90,41,25);
+		suma_helados.addActionListener(new Listeners(this));
 		add(suma_helados);
 		
 		resta_helados = new JButton("-");
 		resta_helados.setBounds(300,90,41,25);
+		resta_helados.addActionListener(new Listeners(this));
 		add(resta_helados);
 		
 		area = new JTextArea();
 		area.setBounds(20,140,250,200);
 		area.setForeground(Color.WHITE);
 		area.setEditable(false);
+		area.setLineWrap(true);
 		area.setBackground(Color.BLACK);
 		add(area);
 		
 		confirmar = new JButton("CONFIRMAR");
 		confirmar.setBounds(120,360,120,25);
+		confirmar.addActionListener(new Listeners(this));
 		add(confirmar);
 		
 		llenarCombosPizzas("C:/Users/Jorge/Desktop/lecturas_archivos_java/PizzasRaspados/pizzas.txt");//CAMBIAR A UNA RUTA MAS BASICA C:/Users/Pizerria_archivos/pizzas.txt
@@ -199,6 +202,9 @@ public class PanelPrincipal extends JPanel{
 		return resta_helados;
 	}
 
+	public JButton getConfirmar() {
+		return confirmar;
+	}
 		
 	
 }
