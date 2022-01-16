@@ -3,6 +3,8 @@ package logica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.text.BadLocationException;
 
@@ -16,13 +18,19 @@ import Ventanas.PanelPrincipal;
 public class Listeners implements ActionListener{
 
 	private int id = 0;
+	private double precio_total;
 	private PanelPrincipal panel;
-	private int contador_p, contador_h;
+	//private int contador_p, contador_h;
+	private String lineas[];
+	private static Set<String> lista = new HashSet<String>();
+	private static ArrayList<String> productos;
+	int contador = 0;
+	
 	
 	public Listeners(PanelPrincipal panel) {
 		
 		this.panel = panel;
-		id++;
+		
 	}
 	
 	@Override
@@ -31,68 +39,70 @@ public class Listeners implements ActionListener{
 		
 		if(e.getSource().equals(panel.getSuma_pizza()) && !panel.getCmb_pizzas().getSelectedItem().equals("Escoge Producto")) {			
 			
-			/*while() {
-				
-			}*/
-			contador_p++;
+			//lineas = panel.getArea().getText().split("\n"); 
+					
+			lista.add((String)panel.getCmb_pizzas().getSelectedItem());
 			
-			panel.getArea().append((String)panel.getCmb_pizzas().getSelectedItem() + "  x" + contador_p + "\n");
+			panel.getArea().setText("");
+			imprimirLista();		
+						
 		}
 		
 		if(e.getSource().equals(panel.getSuma_helados()) && !panel.getCmb_helados().getSelectedItem().equals("Escoge Producto")) {			
 			
-			contador_h++;
+			lista.add((String)panel.getCmb_helados().getSelectedItem());
 			
-			panel.getArea().append((String)panel.getCmb_helados().getSelectedItem() + "  x" + contador_h + "\n");
+			panel.getArea().setText("");
+			imprimirLista();
+			
 		}
+		
 		if(e.getSource().equals(panel.getResta_pizza())) {
 			
-			try {
-				System.out.println(panel.getArea().getLineEndOffset(2));
-			} catch (BadLocationException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			lista.remove((String)panel.getCmb_pizzas().getSelectedItem());
+			
+			panel.getArea().setText("");
+			imprimirLista();
+		}
+		
+		if(e.getSource().equals(panel.getResta_helados())) {
+			
+			lista.remove((String)panel.getCmb_helados().getSelectedItem());
+			
+			panel.getArea().setText("");
+			imprimirLista();
 		}
 		
 		//******************************************BOTON CONFIRMACION***********************************
 		if(e.getSource() == panel.getConfirmar()) {
 			
-			ArrayList<String> productos = null;
+				
+			//productos.add("grano");
 			
-			Facturas factura = new Facturas(id, 13000, Login.user);
+				
+			Facturas factura = new Facturas(id, precio_total, Login.user);
 			
 			factura.setProductos(productos);//ingresar array de productos
 			
 			GuardarObjetos objeto = new GuardarObjetos();
 			objeto.guardarObjetos(factura);
 			
+			id++;
+			
 			new MarcoConfirmacion().setVisible(true);
+			
 		}
 		
 		//*************************************************************************************************
 
-		/*if(!panel.getCmb_pizzas().equals("Escoge Producto")) {
-			
-			if(e.getSource() == panel.getCmb_pizzas()) {
-				
-				panel.getArea().append("\n" + (String)panel.getCmb_pizzas().getSelectedItem());
-								
-			}
-			if(e.getSource() == panel.getCmb_helados()) {
-				
-				panel.getArea().append("\n" + (String)panel.getCmb_helados().getSelectedItem());
-				
-				
-			}
-			
-		}
-		if(e.getSource() == panel.getSuma_pizza()) {
-			
-			
-			
-		}*/
 	}
-
 	
+	public void imprimirLista() {
+		
+		for (String li : lista) {
+			//System.out.println(li + "/ " + li.hashCode());
+			panel.getArea().append(li + "\n");
+		}
+		
+	}	
 }

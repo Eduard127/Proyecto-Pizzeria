@@ -10,11 +10,11 @@ public class Facturas implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private int numero_pedido;
-	private int valor_total;//valor de la factura
+	private double valor_total;//valor de la factura
 	private String empleado;//empleado que realizo la transaccion
 	private ArrayList<String> productos;//productos que se relaizaron en esa transaccion
 	
-	public Facturas(int numero_pedido, int valor_total, String empleado) {
+	public Facturas(int numero_pedido, double valor_total, String empleado) {
 		
 		this.numero_pedido = numero_pedido;
 		this.valor_total = valor_total;
@@ -30,11 +30,11 @@ public class Facturas implements Serializable{
 		this.numero_pedido = numero_pedido;
 	}
 
-	public int getValor_total() {
+	public double getValor_total() {
 		return valor_total;
 	}
 
-	public void setValor_total(int valor_total) {
+	public void setValor_total(double valor_total) {
 		this.valor_total = valor_total;
 	}
 

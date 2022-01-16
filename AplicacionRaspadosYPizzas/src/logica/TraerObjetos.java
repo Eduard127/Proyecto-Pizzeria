@@ -19,7 +19,7 @@ public class TraerObjetos {
 		
 		try {
 			
-			objeto_traido = new ObjectInputStream(new FileInputStream("C:/Users/Jorge/Desktop/lecturas_archivos_java/Objeto2.txt"));
+			objeto_traido = new ObjectInputStream(new FileInputStream("C:/Users/Jorge/Desktop/lecturas_archivos_java/PizzasRaspados/Facturas.txt"));
 
 			factura_recuperada = (ArrayList<Facturas>) objeto_traido.readObject();
 			

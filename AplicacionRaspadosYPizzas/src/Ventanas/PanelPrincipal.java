@@ -17,9 +17,12 @@ import logica.Listeners;
 
 public class PanelPrincipal extends JPanel{
 
+	
 	private JComboBox cmb_pizzas, cmb_helados;
 	private JTextArea area;
 	private JButton suma_pizza, resta_pizza, suma_helados, resta_helados, confirmar;
+	private int total_lineas;
+	public static int linea_contador;
 	
 	public PanelPrincipal() {
 		
@@ -89,7 +92,7 @@ public class PanelPrincipal extends JPanel{
 			BufferedReader lector = new BufferedReader(new FileReader(ruta));
 			
 			while((leer_linea = lector.readLine()) != null) {
-				
+				total_lineas++;
 				cmb_pizzas.addItem(leer_linea);
 			}
 			

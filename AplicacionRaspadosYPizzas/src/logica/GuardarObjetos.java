@@ -15,7 +15,7 @@ public class GuardarObjetos {
 
 	public void guardarObjetos(Facturas factura) {
 		
-		lista_facturas.add(factura);
+		//lista_facturas.add(factura);
 		
 		
 		try {
