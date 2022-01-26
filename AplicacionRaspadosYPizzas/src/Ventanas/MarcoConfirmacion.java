@@ -5,6 +5,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import logica.Listeners;
+
 public class MarcoConfirmacion extends JFrame {
 
 	JButton btn_finalizar, btn_historial;
@@ -23,9 +25,10 @@ public class MarcoConfirmacion extends JFrame {
 		btn_finalizar.setBounds(70,295,100,25);
 		add(btn_finalizar);
 		
-		btn_historial = new JButton("Historial");
+		/*btn_historial = new JButton("Historial");
 		btn_historial.setBounds(170,295,100,25);
-		add(btn_historial);
+		btn_historial.addActionListener(new Listeners(this));
+		add(btn_historial);*/
 	}
 }
 

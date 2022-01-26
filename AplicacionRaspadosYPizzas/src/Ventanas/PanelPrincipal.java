@@ -20,7 +20,7 @@ public class PanelPrincipal extends JPanel{
 	
 	private JComboBox cmb_pizzas, cmb_helados;
 	private JTextArea area;
-	private JButton suma_pizza, resta_pizza, suma_helados, resta_helados, confirmar;
+	private JButton suma_pizza, resta_pizza, suma_helados, resta_helados, confirmar, btn_historial;
 	private int total_lineas;
 	public static int linea_contador;
 	
@@ -72,9 +72,14 @@ public class PanelPrincipal extends JPanel{
 		add(area);
 		
 		confirmar = new JButton("CONFIRMAR");
-		confirmar.setBounds(120,360,120,25);
+		confirmar.setBounds(70,360,120,25);
 		confirmar.addActionListener(new Listeners(this));
 		add(confirmar);
+		
+		btn_historial = new JButton("Historial");
+		btn_historial.setBounds(200,360,120,25);
+		btn_historial.addActionListener(new Listeners(this));
+		add(btn_historial);
 		
 		llenarCombosPizzas("C:/Users/Jorge/Desktop/lecturas_archivos_java/PizzasRaspados/pizzas.txt");//CAMBIAR A UNA RUTA MAS BASICA C:/Users/Pizerria_archivos/pizzas.txt
 		llenarCombosHelados("C:/Users/Jorge/Desktop/lecturas_archivos_java/PizzasRaspados/helados.txt");
@@ -207,6 +212,10 @@ public class PanelPrincipal extends JPanel{
 
 	public JButton getConfirmar() {
 		return confirmar;
+	}
+	
+	public JButton getHistorial() {
+		return btn_historial;
 	}
 		
 	

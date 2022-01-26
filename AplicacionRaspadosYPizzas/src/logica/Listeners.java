@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.swing.text.BadLocationException;
 
 import Objetos.Facturas;
+import Ventanas.Historial;
 import Ventanas.Login;
 import Ventanas.MarcoConfirmacion;
 import Ventanas.PanelPrincipal;
@@ -20,9 +21,13 @@ public class Listeners implements ActionListener{
 	private int id = 0;
 	private double precio_total;
 	private PanelPrincipal panel;
+	private Historial historial;
+	private MarcoConfirmacion marco;//VERIFICAR
 	//private int contador_p, contador_h;
-	private String lineas[];
+	//private String lineas[];
+	private Facturas factura;
 	private static Set<String> lista = new HashSet<String>();
+	private ArrayList<Facturas> facturas = new ArrayList<Facturas>();
 	private static ArrayList<String> productos;
 	int contador = 0;
 	
@@ -31,6 +36,11 @@ public class Listeners implements ActionListener{
 		
 		this.panel = panel;
 		
+	}
+	
+	public Listeners(MarcoConfirmacion marco) {
+		
+		this.marco = marco;
 	}
 	
 	@Override
@@ -80,11 +90,11 @@ public class Listeners implements ActionListener{
 			//productos.add("grano");
 			
 				
-			Facturas factura = new Facturas(id, precio_total, Login.user);
+			factura = new Facturas(id, precio_total, Login.user);
 			
 			factura.setProductos(productos);//ingresar array de productos
 			
-			GuardarObjetos objeto = new GuardarObjetos();
+			GuardarObjetos objeto = new GuardarObjetos(facturas);
 			objeto.guardarObjetos(factura);
 			
 			id++;
@@ -95,6 +105,19 @@ public class Listeners implements ActionListener{
 		
 		//*************************************************************************************************
 
+		
+		if(e.getSource() == panel.getHistorial()) {
+			
+			factura = new Facturas(id, precio_total, Login.user);
+			
+			TraerObjetos objeto_traido = new TraerObjetos();
+			objeto_traido.traerObjetos();
+			
+			//historial.getArea().setText(objeto_traido.traerObjetos());
+			
+			
+			new Historial().setVisible(true);
+		}
 	}
 	
 	public void imprimirLista() {
