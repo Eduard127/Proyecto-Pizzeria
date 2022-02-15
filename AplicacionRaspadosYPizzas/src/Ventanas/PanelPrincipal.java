@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,7 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import Objetos.Facturas;
 import logica.Listeners;
+import logica.TraerObjetos;
+import java.util.ArrayList;
 
 public class PanelPrincipal extends JPanel{
 
@@ -23,10 +27,16 @@ public class PanelPrincipal extends JPanel{
 	private JButton suma_pizza, resta_pizza, suma_helados, resta_helados, confirmar, btn_historial;
 	private int total_lineas;
 	public static int linea_contador;
+	public static ArrayList<Facturas> lista_facturas;//CREAMOS UNA UNICA LISTA PARA PODER USAR Y SOBREESCRIBIR
+	
+	private TraerObjetos objeto_traido;
 	
 	public PanelPrincipal() {
 		
 		setLayout(null);
+		
+		objeto_traido = new TraerObjetos();
+		lista_facturas = objeto_traido.getFactura();// VERIFICAR METODO QUE TRAE LA FACTURA--- RECORDAR, TRAERLO SOLO 1 VEZ
 		
 		cmb_pizzas = new JComboBox();
 		cmb_pizzas.setBounds(30,25,180,25);
@@ -80,6 +90,8 @@ public class PanelPrincipal extends JPanel{
 		btn_historial.setBounds(200,360,120,25);
 		btn_historial.addActionListener(new Listeners(this));
 		add(btn_historial);
+		
+		
 		
 		llenarCombosPizzas("C:/Users/Jorge/Desktop/lecturas_archivos_java/PizzasRaspados/pizzas.txt");//CAMBIAR A UNA RUTA MAS BASICA C:/Users/Pizerria_archivos/pizzas.txt
 		llenarCombosHelados("C:/Users/Jorge/Desktop/lecturas_archivos_java/PizzasRaspados/helados.txt");

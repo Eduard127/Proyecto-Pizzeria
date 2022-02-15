@@ -18,6 +18,7 @@ import Ventanas.PanelPrincipal;
 
 public class Listeners implements ActionListener{
 
+	//private static int id = Listeners.lista.size();
 	private int id = 0;
 	private double precio_total;
 	private PanelPrincipal panel;
@@ -85,19 +86,19 @@ public class Listeners implements ActionListener{
 		
 		//******************************************BOTON CONFIRMACION***********************************
 		if(e.getSource() == panel.getConfirmar()) {
+							
+			id = PanelPrincipal.lista_facturas.size();
 			
-				
-			//productos.add("grano");
+			id++;
 			
-				
 			factura = new Facturas(id, precio_total, Login.user);
 			
 			factura.setProductos(productos);//ingresar array de productos
 			
+			
 			GuardarObjetos objeto = new GuardarObjetos(facturas);
 			objeto.guardarObjetos(factura);
-			
-			id++;
+						
 			
 			new MarcoConfirmacion().setVisible(true);
 			
